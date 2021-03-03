@@ -8,7 +8,26 @@ exports.createUser = async (req, res) => {
         res.status(400).send({ message: 'Nao pode estar vazio!' });
         return;
     }
-
+    if (!req.body.age) {
+        res.status(400).send({ message: 'Nao pode estar vazio!' });
+        return;
+    }
+    if (!req.body.maritalStatus) {
+        res.status(400).send({ message: 'Nao pode estar vazio!' });
+        return;
+    }
+    if (!req.body.CPF) {
+        res.status(400).send({ message: 'Nao pode estar vazio!' });
+        return;
+    }
+    if (!req.body.state) {
+        res.status(400).send({ message: 'Nao pode estar vazio!' });
+        return;
+    }
+    if (!req.body.city) {
+        res.status(400).send({ message: 'Nao pode estar vazio!' });
+        return;
+    }
     const user = new User(req.body);
 
     try {
@@ -48,7 +67,7 @@ exports.removeUser = async (req, res) => {
         res.send('success');
     } catch (error) {
         res.status(500).send({
-            message: 'Nao foi possivel deletar usuario com id=' + id,
+            message: 'Nao foi possivel deletar usuario ! ',
         });
     }
 };
@@ -64,25 +83,49 @@ exports.getUser = async (req, res) => {
         res.send(getUser);
     } catch (error) {
         res.status(500).send({
-            message: 'Nao foi possivel deletar usuario com id=' + id,
+            message: 'Nao foi possivel deletar usuario! ',
         });
     }
 };
 
 exports.UpdateUser = async (req, res) => {
     try {
+        if (!req.body.name) {
+            res.status(400).send({ message: 'Nao pode estar vazio!' });
+            return;
+        }
+        if (!req.body.age) {
+            res.status(400).send({ message: 'Nao pode estar vazio!' });
+            return;
+        }
+        if (!req.body.maritalStatus) {
+            res.status(400).send({ message: 'Nao pode estar vazio!' });
+            return;
+        }
+        if (!req.body.CPF) {
+            res.status(400).send({ message: 'Nao pode estar vazio!' });
+            return;
+        }
+        if (!req.body.state) {
+            res.status(400).send({ message: 'Nao pode estar vazio!' });
+            return;
+        }
+        if (!req.body.city) {
+            res.status(400).send({ message: 'Nao pode estar vazio!' });
+            return;
+        }
         const id = req.params.id;
         const update = await User.findByIdAndUpdate({ _id: id }, req.body);
         if (!update) {
             res.status(404).send({
-                message: 'Nao foi possive encontrar com id=' + id,
+                message: 'Nao foi possive encontrar o usuario!',
             });
         }
 
         res.send('success');
     } catch (error) {
         res.status(500).send({
-            message: 'Nao foi possivel deletar usuario com id=' + id,
+            message: 'Nao foi possivel deletar usuario!',
         });
     }
 };
