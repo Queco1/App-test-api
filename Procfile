@@ -1,1 +1,1 @@
-web:syarn start
+web:yarn start
