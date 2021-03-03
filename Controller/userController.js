@@ -8,12 +8,12 @@ exports.createUser = async (req, res) => {
         res.status(400).send({ message: 'Nao pode estar vazio!' });
         return;
     }
+
     const user = new User(req.body);
 
     try {
         await user.save((err) => {
             if (err) {
-                console.log(err);
                 res.send(err.message);
             }
             res.send('success');
@@ -24,14 +24,65 @@ exports.createUser = async (req, res) => {
         });
     }
 };
-exports.findAllUsers = async (req, res) => {
-    const allUsers = await User.find();
-    res.send(allUsers);
-};
-exports.removeUser = async (req, res) => {
-    const id = req.params.id;
 
-    const allUsers = await User.find();
-    res.send(allUsers);
+exports.findAllUsers = async (req, res) => {
+    try {
+        const allUsers = await User.find();
+        res.send(allUsers);
+    } catch (error) {
+        res.status(500).send({
+            message: 'Nao foi possivel encontrar os usuários cadastrados',
+        });
+    }
 };
-exports.deleteUser = (req, res) => {};
+
+exports.removeUser = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const removeUser = await User.findByIdAndRemove(id);
+        if (!removeUser) {
+            res.status(404).send({
+                message: 'Nao foi possive encontrar com id=' + id,
+            });
+        }
+        res.send('success');
+    } catch (error) {
+        res.status(500).send({
+            message: 'Nao foi possivel deletar usuario com id=' + id,
+        });
+    }
+};
+exports.getUser = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const getUser = await User.find({ _id: id });
+        if (!getUser) {
+            res.status(404).send({
+                message: 'Nao foi possive encontrar com id=' + id,
+            });
+        }
+        res.send(getUser);
+    } catch (error) {
+        res.status(500).send({
+            message: 'Nao foi possivel deletar usuario com id=' + id,
+        });
+    }
+};
+
+exports.UpdateUser = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const update = await User.findByIdAndUpdate({ _id: id }, req.body);
+        if (!update) {
+            res.status(404).send({
+                message: 'Nao foi possive encontrar com id=' + id,
+            });
+        }
+
+        res.send('success');
+    } catch (error) {
+        res.status(500).send({
+            message: 'Nao foi possivel deletar usuario com id=' + id,
+        });
+    }
+};

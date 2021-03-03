@@ -31,10 +31,12 @@ app.post('/user', (req, res) => user.createUser(req, res));
 
 app.get('/user', (req, res) => user.findAllUsers(req, res));
 
-app.get('/', (req, res) => {
-    res.json({ message: 'Hello' });
-});
+app.delete('/user/:id', (req, res) => user.removeUser(req, res));
+
+app.get('/user/:id', (req, res) => user.getUser(req, res));
+
+app.put('/user/:id', (req, res) => user.UpdateUser(req, res));
 
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}.`);
+    console.log(`Servidor rodando na porta ${PORT}.`);
 });
