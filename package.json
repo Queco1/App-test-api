@@ -12,7 +12,8 @@
     "mongoose": "^5.11.18"
   },
   "scripts": {
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "start": "node Router/server.js"
   },
   "lint-staged": {
     "*.js": [
