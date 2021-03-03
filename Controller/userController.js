@@ -68,6 +68,7 @@ exports.removeUser = async (req, res) => {
         }
         res.send('success');
     } catch (error) {
+        console.log(error);
         res.status(500).send({
             message: 'Nao foi possivel deletar usuario ! ',
         });
@@ -128,6 +129,7 @@ exports.UpdateUser = async (req, res) => {
 
         res.send('success');
     } catch (error) {
+        console.log(error);
         res.status(500).send({
             message: 'Nao foi possivel Editar usuario!',
         });
