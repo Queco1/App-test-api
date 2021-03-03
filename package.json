@@ -11,6 +11,9 @@
     "lint-staged": "^10.5.4",
     "mongoose": "^5.11.18"
   },
+  "engines": {
+    "node": "12.11.1"
+  },
   "scripts": {
     "lint-staged": "lint-staged",
     "start": "node Router/server.js"
