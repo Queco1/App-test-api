@@ -34,6 +34,7 @@ exports.createUser = async (req, res) => {
         await user.save((err) => {
             if (err) {
                 res.send(err.message);
+                return;
             }
             res.send('success');
         });
