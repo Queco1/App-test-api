@@ -64,6 +64,7 @@ exports.removeUser = async (req, res) => {
             res.status(404).send({
                 message: 'Nao foi possive encontrar com id=' + id,
             });
+            return;
         }
         res.send('success');
     } catch (error) {
@@ -80,6 +81,7 @@ exports.getUser = async (req, res) => {
             res.status(404).send({
                 message: 'Nao foi possive encontrar com id=' + id,
             });
+            return;
         }
         res.send(getUser);
     } catch (error) {
@@ -121,12 +123,13 @@ exports.UpdateUser = async (req, res) => {
             res.status(404).send({
                 message: 'Nao foi possive encontrar o usuario!',
             });
+            return;
         }
 
         res.send('success');
     } catch (error) {
         res.status(500).send({
-            message: 'Nao foi possivel deletar usuario!',
+            message: 'Nao foi possivel Editar usuario!',
         });
     }
 };
