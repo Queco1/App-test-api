@@ -1,14 +1,11 @@
+require('dotenv').config();
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const user = require('../Controller/userController');
 const app = express();
 const PORT = process.env.PORT || 3001;
-
-const corsOptions = {
-    origin: 'http://localhost:3000/',
-    credentials: true,
-};
 
 app.use(cors());
 
