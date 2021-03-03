@@ -5,7 +5,6 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const user = require('../Controller/userController');
 const app = express();
-const PORT = process.env.PORT || 3001;
 
 app.use(cors());
 
@@ -34,6 +33,6 @@ app.get('/user/:id', (req, res) => user.getUser(req, res));
 
 app.put('/user/:id', (req, res) => user.UpdateUser(req, res));
 
-app.listen(PORT, () => {
-    console.log(`Servidor rodando na porta ${PORT}.`);
+app.listen(process.env.PORT || 3000, () => {
+    console.log(`Servidor rodando na porta ${process.env.PORT}.`);
 });
